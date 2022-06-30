@@ -10,6 +10,10 @@ function CashEntry(){
     navigate("/CashEntry");
 }
 
+function CashOut(){
+    navigate("/CashOut");
+}
+
 
     return(
         <Container>
@@ -32,7 +36,7 @@ function CashEntry(){
                     </Icon>
                     <h4>Nova entrada</h4>
                 </Registrer>
-                <Registrer>
+                <Registrer onClick={CashOut}>
                     <Icon>
                     <ion-icon name="remove-circle-outline"></ion-icon>
                     </Icon>

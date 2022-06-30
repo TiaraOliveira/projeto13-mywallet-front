@@ -13,11 +13,11 @@ export default function CashEntry(){
     return(
         <Container>
             
-           <h4>Nova entrada</h4>
+           <h4>Nova saída</h4>
            <form >
             <input placeholder="valor" type="email"  onChange={e => setloginEmail(e.target.value)}  value={loginemail} required/>
             <input placeholder="descrição" type="password"  onChange={e => setloginPassword(e.target.value)}  value={loginpassword} required/>
-            <button onClick={Register}>Salvar entrada</button>
+            <button onClick={Register} >Salvar saída</button>
         </form>
         
          </Container>

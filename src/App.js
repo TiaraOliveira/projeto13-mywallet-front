@@ -4,6 +4,7 @@ import TelaCadastro from "./components/TelaCadastro.js"
 import UserContext from "./components/contexts/UserContext";
 import Registros from "./components/Registros.js"
 import CashEntry from "./components/CashEntry.js"
+import CashOut from "./components/CashOut.js"
 import { useState } from "react";
 import './components/reset.css'
 
@@ -27,6 +28,7 @@ export default function App(){
                     <Route path="/Cadastro" element={<TelaCadastro />}/>
                     <Route path="/Registros" element={<Registros />}/>
                     <Route path="/CashEntry" element={<CashEntry />}/>
+                    <Route path="/CashOut" element={<CashOut />}/>
                 </Routes>
               
             </BrowserRouter>
