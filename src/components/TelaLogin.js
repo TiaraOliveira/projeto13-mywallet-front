@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import axios from 'axios';
 import { useState } from "react";
-import Logomarca from './Logomarca';
 import UserContext from './contexts/UserContext';
-import { ThreeDots } from  'react-loader-spinner'
+import { ThreeDots } from  'react-loader-spinner';
+import Logomarca from './Logomarca';
 
 
 export default function TelaLogin(){
@@ -15,7 +15,7 @@ export default function TelaLogin(){
 
     const [Loading, setLoading] = useState(false);
     
-      
+     const navigate = useNavigate() 
     function Login(event){
         setLoading(true);
         event.preventDefault();
@@ -23,14 +23,15 @@ export default function TelaLogin(){
             email: loginemail,
             password: loginpassword,
         }
-         const promise = axios.post('"http://localhost:5000/dadoslogin',dadosLogin )
+         const promise = axios.post('http://localhost:5000/login',dadosLogin )
          promise.then((response) => {
            
            setDados(response.data);
+           console.log(`Este são os dados ${dados}`)
            const serializedUser = JSON.stringify(dados);
 
            localStorage.setItem("user", serializedUser);
-           
+           navigate("/Registros");
           });
              
           promise.catch((e) => {
@@ -47,7 +48,7 @@ export default function TelaLogin(){
      <>
     
      <Container>
-         <Logomarca />
+     <Logomarca />
          <form >
             <input placeholder="teste@teste.com" type="email"  onChange={e => setloginEmail(e.target.value)}  value={loginemail} disabled={Loading} required/>
             <input placeholder="••••••" type="password"  onChange={e => setloginPassword(e.target.value)}  value={loginpassword} disabled={Loading} required/>
@@ -119,4 +120,6 @@ const Container = styled.div`
     h4{
         margin-top:15px;
     }
+  
+
 `;

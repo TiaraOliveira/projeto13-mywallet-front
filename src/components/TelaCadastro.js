@@ -11,6 +11,7 @@ export default function TelaCadastro(){
     const [email, setEmail] = useState([]);
     const [name, setName] = useState([]);
     const [password, setPassword] = useState([]);
+    const [password_confirmation, setpassword_confirmation] = useState([]);
     const navigate = useNavigate()
     const [Loading, setLoading] = useState(false);
 
@@ -22,11 +23,13 @@ export default function TelaCadastro(){
             name: name,           
             email: email,
             password: password,
+            password_confirmation: password_confirmation
         }
-        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up', body)
+        console.log(body)
+        const promise = axios.post('http://localhost:5000/cadastrar', body)
         promise.then(() => navigate("/"))
         promise.catch((e) => {
-            alert("Campos invalos, verifique preenchiment.");
+            alert("Campos invalidos, verifique preenchimento.");
             setLoading(false);
           });
        
@@ -39,7 +42,7 @@ export default function TelaCadastro(){
                 <input placeholder="nome" type="text"  onChange={e => setName(e.target.value)}  value={name} disabled={Loading} required />
                 <input placeholder="email" type="email"  onChange={e => setEmail(e.target.value)}  value={email} disabled={Loading} required />
                 <input placeholder="senha" type="password"  onChange={e => setPassword(e.target.value)}  value={password} disabled={Loading} required />
-                <input placeholder="senha" type="password"  onChange={e => setPassword(e.target.value)}  value={password} disabled={Loading} required />                
+                <input placeholder="confirme sua senha" type="password"  onChange={e => setpassword_confirmation(e.target.value)}  value={password_confirmation} disabled={Loading} required />                
                 <button onClick={singUp}>{Loading ? (
              <ThreeDots color="#ffffff" height={25} width={316}/>
             ) : (

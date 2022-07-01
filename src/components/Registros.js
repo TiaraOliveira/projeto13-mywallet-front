@@ -1,11 +1,20 @@
 import styled from 'styled-components';
 import {useNavigate} from "react-router-dom";
-
-
+import axios from 'axios';
+import {useState } from "react";
+import { useContext } from "react";
+import UserContext from './contexts/UserContext';
 
 export default function Registros(){
     const navigate = useNavigate();
-
+    const {dados, setDados} = useContext(UserContext);
+    const [solds, setSolds] = useState([]);
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${dados.token}`
+        }
+    }
+    
 function CashEntry(){
     navigate("/CashEntry");
 }
@@ -15,18 +24,54 @@ function CashOut(){
 }
 
 
+function Backlogin(){
+    navigate("/");
+}
+
+function Rendersolds(){
+    const promise = axios.get("http://localhost:5000/Cashin", config);
+  
+      promise.then(response => {
+          setSolds(response.data);
+          
+        });
+        console.log(solds)
+        promise.catch(err => {
+          const message = err.response.statusText;
+          alert(message);
+        });
+  }
+  
     return(
         <Container>
             
             <Header>
                 <h4>Olá, fulano</h4>
-                <Icon>
+                <Icon onClick={Backlogin}>
                 <ion-icon name="exit-outline"></ion-icon>
                 </Icon>
             </Header>
             
             <Content>
-                <h5>Não há registros de entrada ou saídas</h5>
+                
+            <HabitList>   
+                        {solds.length === 0 ?
+                       'Não há registros e entradas'
+                    :
+                    solds.map((habito) => {
+                        return(
+                            <Atividade>
+                                <eii>
+                                    <h4>{habito.description}</h4>
+                                   
+                                        </eii>
+                             
+                            
+                            </Atividade>
+                        );
+                    })
+                    }
+                </HabitList>
             </Content>
 			
             <Add>
@@ -147,4 +192,20 @@ const Content = styled.div`
     margin: 24px;
 
     }
+`
+const HabitList = styled.div`
+    margin-bottom: 100px;
+    margin-top: 40px;
+    width: 98%;
+`
+const Atividade = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 10px 30px 30px;
+    height: 170px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    padding-left: 15px;
 `

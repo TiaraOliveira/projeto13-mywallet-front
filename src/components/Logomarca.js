@@ -8,15 +8,13 @@ export default function Logomarca(){
 }
 
 const Logo = styled.div`
-        img{
-            width: 255px;
-        }
+        
 
         h1{
-            font-family: 'Playball', cursive;
+            font-family: 'Saira Stencil One';
+            font-style: normal;
             font-weight: 400;
-            font-size: 69px;
-            line-height: 86px;
-            text-align: center;
-}
+            font-size: 32px;
+            line-height: 50px;
+       }
 `
