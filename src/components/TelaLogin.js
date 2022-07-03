@@ -15,7 +15,8 @@ export default function TelaLogin(){
 
     const [Loading, setLoading] = useState(false);
     
-     const navigate = useNavigate() 
+    const navigate = useNavigate() 
+    
     function Login(event){
         setLoading(true);
         event.preventDefault();
@@ -27,8 +28,9 @@ export default function TelaLogin(){
          promise.then((response) => {
            
            setDados(response.data);
-           console.log(`Este são os dados ${dados}`)
+           
            const serializedUser = JSON.stringify(dados);
+
 
            localStorage.setItem("user", serializedUser);
            navigate("/Registros");

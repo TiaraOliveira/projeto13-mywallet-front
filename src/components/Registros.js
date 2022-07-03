@@ -1,19 +1,29 @@
 import styled from 'styled-components';
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
-import {useState } from "react";
-import { useContext } from "react";
+import { useState, useEffect } from "react";
 import UserContext from './contexts/UserContext';
+import { useContext } from "react";
+
 
 export default function Registros(){
     const navigate = useNavigate();
-    const {dados, setDados} = useContext(UserContext);
     const [solds, setSolds] = useState([]);
-    const config = {
-        headers: {
-            "Authorization": `Bearer ${dados.token}`
-        }
-    }
+    const {dados} = useContext(UserContext);
+
+
+    useEffect(() => {
+		
+        const promise = axios.get("http://localhost:5000/Cashin");
+        console.log(promise)
+    
+        promise.then(response => {setSolds(response.data)});
+       
+          promise.catch(err => {
+            const message = err.response.statusText;
+            alert(message);
+          })
+      }, []);
     
 function CashEntry(){
     navigate("/CashEntry");
@@ -28,20 +38,9 @@ function Backlogin(){
     navigate("/");
 }
 
-function Rendersolds(){
-    const promise = axios.get("http://localhost:5000/Cashin", config);
-  
-      promise.then(response => {
-          setSolds(response.data);
-          
-        });
-        console.log(solds)
-        promise.catch(err => {
-          const message = err.response.statusText;
-          alert(message);
-        });
-  }
-  
+
+
+ 
     return(
         <Container>
             
@@ -54,24 +53,33 @@ function Rendersolds(){
             
             <Content>
                 
-            <HabitList>   
+            <Extract>   
                         {solds.length === 0 ?
                        'Não há registros e entradas'
                     :
-                    solds.map((habito) => {
+                    solds.map((extract) => {
                         return(
                             <Atividade>
-                                <eii>
-                                    <h4>{habito.description}</h4>
-                                   
-                                        </eii>
-                             
-                            
-                            </Atividade>
+                                <span>
+                                    <h5>{extract.dia}</h5>
+                                    <h4>{extract.description}</h4>
+                                </span>
+                                  
+                                    <span>
+                                        <Eachvalue eachvalue= {extract.type}>{(extract.soldin)}</Eachvalue>
+                                       
+                                    </span>
+    
+                          </Atividade>
                         );
                     })
                     }
-                </HabitList>
+                </Extract>
+              <Saldo>
+                  <h4>Saldo</h4>
+                  <h4>uu</h4>
+              </Saldo>
+
             </Content>
 			
             <Add>
@@ -129,6 +137,11 @@ const Header = styled.div`
 
 
 `
+const Eachvalue =styled.div`
+    color: ${(props) => props.eachvalue === "increase" ? "#03AC00" : "#C70000"};
+    padding-right: 15px;
+   
+`
 
 const Add = styled.div`
     display: flex;
@@ -170,13 +183,14 @@ const Icon = styled.div`
     font-size: 22px;
 `
 const Content = styled.div`
+    position: relative;
+    overflow-y: scroll;
+    scrollbar-width: none;
     display: flex;
     align-items: center;
 	justify-content: center;
     width:80%;
-    height: 446px;
-    left: 25px;
-    top: 78px;
+    height: 800px;
     background: #FFFFFF;
     border-radius: 5px;
     margin: 30px;
@@ -192,20 +206,61 @@ const Content = styled.div`
     margin: 24px;
 
     }
+   
 `
-const HabitList = styled.div`
+
+const Saldo = styled.div`
+        position: absolute;
+        position: fixed;
+        bottom: 200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width:70%;
+`
+
+const Extract = styled.div`
+    position: absolute;
+    padding-top:35px;
     margin-bottom: 100px;
-    margin-top: 40px;
+    margin-top: 10px;
     width: 98%;
+    height: 80%;
 `
 const Atividade = styled.div`
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 10px 10px 30px 30px;
-    height: 170px;
+    height: 17px;
     background: #FFFFFF;
     border-radius: 5px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     padding-left: 15px;
+    
+
+    span{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padinng:10px;
+    }
+    h5{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #C6C6C6;
+    }
+    h4{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #000000;
+
+
+    }
 `

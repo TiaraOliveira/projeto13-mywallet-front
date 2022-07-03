@@ -29,6 +29,7 @@ export default function App(){
                     <Route path="/Registros" element={<Registros />}/>
                     <Route path="/CashEntry" element={<CashEntry />}/>
                     <Route path="/CashOut" element={<CashOut />}/>
+                    
                 </Routes>
               
             </BrowserRouter>

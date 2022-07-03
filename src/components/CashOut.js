@@ -1,23 +1,39 @@
 import styled from 'styled-components';
 import { useState } from "react";
+import React from 'react';
 import {useNavigate} from "react-router-dom";
+import axios from 'axios';
+import UserContext from './contexts/UserContext';
+import { useContext } from "react";
 
 export default function CashEntry(){
-    const [loginemail, setloginEmail] =  useState();
-    const [loginpassword, setloginPassword] =  useState();
+    const [soldin, setSoldin] =  useState();
+    const [description, setDescription] =  useState();
     const navigate = useNavigate();
+    const {dados} = useContext(UserContext);
 
-    function Register(){
-        navigate("/Registros");
+    
+    function Register(event){
+        event.preventDefault();
+      const body = {
+            soldin: soldin,           
+            description: description,
+        }
+
+        const promise = axios.post('http://localhost:5000/Cashout', body)
+        promise.then(() => navigate("/Registros"))
+        promise.catch((e) => {
+            alert("Campos invalidos, verifique preenchimento.");
+         });
     }
     return(
         <Container>
             
-           <h4>Nova saída</h4>
+           <h4>Nova entrada</h4>
            <form >
-            <input placeholder="valor" type="email"  onChange={e => setloginEmail(e.target.value)}  value={loginemail} required/>
-            <input placeholder="descrição" type="password"  onChange={e => setloginPassword(e.target.value)}  value={loginpassword} required/>
-            <button onClick={Register} >Salvar saída</button>
+            <input placeholder="valor" type="number"  onChange={e => setSoldin(e.target.value)}  value={soldin} required/>
+            <input placeholder="descrição" type="text"  onChange={e => setDescription(e.target.value)}  value={description} required/>
+            <button onClick={Register}>Salvar entrada</button>
         </form>
         
          </Container>
@@ -44,16 +60,13 @@ const Container = styled.div`
         font-weight: 400;
         font-size: 20px;
         line-height: 23px;
-        
         width: 326px;
         height: 58px;
         left: 25px;
         top: 96px;
-        
         background: #FFFFFF;
         border-radius: 5px;
         margin-top: 10px;
-       
     }
     
 

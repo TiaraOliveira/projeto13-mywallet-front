@@ -3,19 +3,23 @@ import { useState } from "react";
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
+import UserContext from './contexts/UserContext';
+import { useContext } from "react";
 
 export default function CashEntry(){
     const [soldin, setSoldin] =  useState();
     const [description, setDescription] =  useState();
     const navigate = useNavigate();
+    const {dados} = useContext(UserContext);
 
+    
     function Register(event){
         event.preventDefault();
       const body = {
             soldin: soldin,           
             description: description,
         }
-        console.log(body)
+
         const promise = axios.post('http://localhost:5000/Cashin', body)
         promise.then(() => navigate("/Registros"))
         promise.catch((e) => {
