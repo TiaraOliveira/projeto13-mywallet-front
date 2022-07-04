@@ -17,6 +17,7 @@ export default function TelaCadastro(){
 
     
     function singUp(event){
+        console.log("here")
         event.preventDefault();
         setLoading(true);
         const body = {
@@ -74,7 +75,7 @@ const Container = styled.div`
     color: #FFFFFF;
   
     input{
-        color: #F2F2F2;
+        
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;

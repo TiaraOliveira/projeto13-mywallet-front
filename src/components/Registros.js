@@ -11,13 +11,14 @@ export default function Registros(){
     const [solds, setSolds] = useState([]);
     const {dados} = useContext(UserContext);
     let total = 0
+    const config = {
+        headers: {
+            Authorization: `Bearer ${dados.token}`
+        }
+    }
 
     useEffect(() => {
-		const config = {
-            headers: {
-                Authorization: `Bearer ${dados.token}`
-            }
-        }
+		
         const promise = axios.get("https://back-project13-mywallet.herokuapp.com/Cashin", config);
         console.log(promise)
     
@@ -51,6 +52,7 @@ function Backlogin(){
 }
 
 
+  
 
  
     return(
