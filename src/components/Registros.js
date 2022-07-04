@@ -10,11 +10,15 @@ export default function Registros(){
     const navigate = useNavigate();
     const [solds, setSolds] = useState([]);
     const {dados} = useContext(UserContext);
-
+    let total = 0
 
     useEffect(() => {
-		
-        const promise = axios.get("http://localhost:5000/Cashin");
+		const config = {
+            headers: {
+                Authorization: `Bearer ${dados.token}`
+            }
+        }
+        const promise = axios.get("https://back-project13-mywallet.herokuapp.com/Cashin", config);
         console.log(promise)
     
         promise.then(response => {setSolds(response.data)});
@@ -23,8 +27,16 @@ export default function Registros(){
             const message = err.response.statusText;
             alert(message);
           })
-      }, []);
+      });
     
+      for (let i = 0; i < solds.length; i++) {
+        if(solds[i].type ==="increase"){
+            total = total + solds[i].soldin
+        } else{
+            total = total + solds[i].soldin
+        }
+    }
+
 function CashEntry(){
     navigate("/CashEntry");
 }
@@ -45,7 +57,7 @@ function Backlogin(){
         <Container>
             
             <Header>
-                <h4>Olá, fulano</h4>
+                <h4>Olá, {dados.name}</h4>
                 <Icon onClick={Backlogin}>
                 <ion-icon name="exit-outline"></ion-icon>
                 </Icon>
@@ -77,7 +89,7 @@ function Backlogin(){
                 </Extract>
               <Saldo>
                   <h4>Saldo</h4>
-                  <h4>uu</h4>
+                  <h4>{total}</h4>
               </Saldo>
 
             </Content>

@@ -16,11 +16,15 @@ export default function CashEntry(){
     function Register(event){
         event.preventDefault();
       const body = {
-            soldin: soldin,           
+            soldin: parseFloat(Math.abs(soldin).toFixed(2)),           
             description: description,
         }
-
-        const promise = axios.post('http://localhost:5000/Cashin', body)
+        const config = {
+            headers: {
+                Authorization: `Bearer ${dados.token}`
+            }
+        }
+        const promise = axios.post('https://back-project13-mywallet.herokuapp.com/Cashin', body, config)
         promise.then(() => navigate("/Registros"))
         promise.catch((e) => {
             alert("Campos invalidos, verifique preenchimento.");

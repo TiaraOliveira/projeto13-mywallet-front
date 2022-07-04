@@ -26,7 +26,7 @@ export default function TelaCadastro(){
             password_confirmation: password_confirmation
         }
         console.log(body)
-        const promise = axios.post('http://localhost:5000/cadastrar', body)
+        const promise = axios.post('https://back-project13-mywallet.herokuapp.com/cadastrar', body)
         promise.then(() => navigate("/"))
         promise.catch((e) => {
             alert("Campos invalidos, verifique preenchimento.");
