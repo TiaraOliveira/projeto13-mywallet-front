@@ -2,7 +2,7 @@ import styled from "styled-components"
 export default function Logomarca(){
     return(
         <Logo>
-             <h1>My wallet</h1> 
+             <h1>MyWallet</h1> 
         </Logo>
     )
 }

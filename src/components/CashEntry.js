@@ -33,16 +33,14 @@ export default function CashEntry(){
     return(
         <Container>
             <Content>
-            <h4>Nova entrada</h4>
-           <form >
-            <input placeholder="valor" type="number"  onChange={e => setSoldin(e.target.value)}  value={soldin} required/>
-            <input placeholder="descrição" type="text"  onChange={e => setDescription(e.target.value)}  value={description} required/>
-            <button onClick={Register}>Salvar entrada</button>
-        </form>
+                <h4>Nova entrada</h4>
+                <form >
+                    <input placeholder="valor" type="number"  onChange={e => setSoldin(e.target.value)}  value={soldin} required/>
+                    <input placeholder="descrição" type="text"  onChange={e => setDescription(e.target.value)}  value={description} required/>
+                    <button onClick={Register}>Salvar entrada</button>
+                </form>
             </Content>
-          
-        
-         </Container>
+        </Container>
        
 
     )
@@ -51,23 +49,22 @@ export default function CashEntry(){
 
 const Container = styled.div`
         display: flex;
-        justify-content: center;
         align-items: center;
         flex-direction: column;
         width: 100%;
         height:100vh;
         background-color: #8C11BE;
-    input{
-        color: #F2F2F2
+        padding-top: 80px;
         font-family: 'Raleway';
         font-style: normal;
+
+    input{
+        color: #F2F2F2
         font-weight: 400;
         font-size: 20px;
         line-height: 23px;
         width: 326px;
         height: 58px;
-        left: 25px;
-        top: 96px;
         background: #FFFFFF;
         border-radius: 5px;
         margin-top: 10px;
@@ -75,12 +72,8 @@ const Container = styled.div`
     
 
     button{
-        width: 326px;
+        width: 332px;
         height: 46px;
-        left: 25px;
-        top: 238px;
-        font-family: 'Raleway';
-        font-style: normal;
         font-weight: 700;
         font-size: 20px;
         line-height: 23px;
@@ -89,6 +82,7 @@ const Container = styled.div`
         border-radius: 5px;
         text-align: center;
         margin-top: 20px;
+        border-color: #A328D6;
     }
 
     form{
@@ -97,13 +91,12 @@ const Container = styled.div`
     }
 
     h4{
-        font-family: 'Raleway';
-        font-style: normal;
-        font-weight: 700;
+        font-weight: bold;
         font-size: 26px;
         line-height: 31px;
         color: #FFFFFF;
-        margin-top:15px;
+        margin-bottom:20px;
+      
     }
 
     
@@ -112,6 +105,7 @@ const Container = styled.div`
 const Content = styled.div`
     positio:fixed;
     top: 10px;
+  
 
 
 `

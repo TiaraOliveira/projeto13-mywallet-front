@@ -106,8 +106,9 @@ const Container = styled.div`
         font-size: 20.976px;
         line-height: 26px;
         text-align: center;
-
-    }
+        border-color: #A328D6;
+       
+          }
     form{
         display:flex;
         flex-direction: column;

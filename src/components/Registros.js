@@ -30,6 +30,7 @@ export default function Registros(){
           })
       });
     
+  
       for (let i = 0; i < solds.length; i++) {
         if(solds[i].type ==="increase"){
             total = total + solds[i].soldin
@@ -50,9 +51,6 @@ function CashOut(){
 function Backlogin(){
     navigate("/");
 }
-
-
-  
 
  
     return(
@@ -99,6 +97,7 @@ function Backlogin(){
 			
             <Add>
                 <Registrer onClick={CashEntry}>
+                    
                     <Icon>
                     <ion-icon name="add-circle-outline"></ion-icon>
                     </Icon>
@@ -120,13 +119,16 @@ function Backlogin(){
 
 
 const Container = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-width: 100%;
-height:100vh;
-background-color: #8C11BE;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height:100vh;
+        background-color: #8C11BE;
+        padding-top: 10px;
+        font-family: 'Raleway';
+        font-style: normal;
 
     
 `;
@@ -135,105 +137,54 @@ const Header = styled.div`
     align-items: center;
     justify-content: space-between;
     width:80%;
-   
-	
+ 
     h4{
         margin-top:15px;
         color: #FFFFFF;
-        font-family: 'Raleway';
-        font-style: normal;
         font-weight: 700;
         font-size: 26px;
         line-height: 31px;
-       
     }
-
-
 `
 const Eachvalue =styled.div`
     color: ${(props) => props.eachvalue === "increase" ? "#03AC00" : "#C70000"};
     padding-right: 15px;
-   
+
 `
-
-const Add = styled.div`
-    display: flex;
-    align-items: center;
-	justify-content: center;
-    position: fixed;
-	bottom: 0;
-    width: 100%;
-    heigth: 50px;
-    z-index:1;
-    background: #8C11BE;
-
-    h4{
-        margin-top:15px;
-        color: #FFFFFF;
-        font-family: 'Raleway';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 17px;
-        line-height: 20px;
-        color: #FFFFFF;
-    }
-
-    
-`
-
-const Registrer = styled.div`
-    width: 155px;
-    height: 114px;
-    left: 25px;
-    top: 537px;
-    margin-right: 19px;
-    background: #A328D6;
-    border-radius: 5px;
-   
-`
-
 const Icon = styled.div`
     color: #FFFFFF;
     margin-right: 19px;
     font-size: 22px;
-`
-const Content = styled.div`
-    position: relative;
-    position: relative;
-        overflow-y: scroll;
-        scrollbar-width: none;
     display: flex;
     align-items: center;
-	justify-content: center;
-    width:80%;
-    height: 800px;
-    background: #FFFFFF;
-    border-radius: 5px;
-    margin: 30px;
+	padding-top: 10px;
+`
+const Content = styled.div`
+        position: relative;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        display: flex;
+        justify-content: center;
+        width:80%;
+        height: 800px;
+        background: #FFFFFF;
+        border-radius: 5px;
+        margin-top: 30px;
+        margin-bottom: 50px;
 
-    h5{
-    font-family: 'Raleway';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
-    text-align: center;
-    color: #868686;
-    margin: 24px;
-
-    }
    
 `
 
 const Sold = styled.div`
         position:fixed;
-        bottom: 130px;
+        bottom: 135px;
         z-index:1;
         display: flex;
         justify-content: space-between;
         align-items: center;
         width:75%;
         margin-left:15px;
+        margin-top:15px;
         padding-rigth:45px;
         height: 50px;
         background: #ffffff;
@@ -242,14 +193,13 @@ const Sold = styled.div`
 const Extract = styled.div`
     position: absolute;
     padding-top:35px;
-  
     margin-top: 10px;
     width: 98%;
     height: 80%;
+    padding-bottom: 300px;
 `
 
 const Atividade = styled.div`
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -267,25 +217,62 @@ const Atividade = styled.div`
         padinng:10px;
     }
     h5{
-        font-family: 'Raleway';
-        font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
         color: #C6C6C6;
+      
     }
     h4{
-        font-family: 'Raleway';
-        font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
         color: #000000;
-
+        margin-left:10px;
+       
 
     }
 `
 const Total = styled.div`
             color: ${(props) => props.total > 0 ? "#03AC00" : "#C70000"};
             margin-rigth:45px;
+`
+
+const Add = styled.div`
+    display: flex;
+    align-items: center;
+	justify-content: center;
+    position: fixed;
+	bottom: 0;
+    width: 80%;
+    heigth: 50px;
+    z-index:1;
+    background: #8C11BE;
+ 
+    h4{
+        margin-top:15px;
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 20px;
+        color: #FFFFFF;
+        width: 40%;
+        
+    }
+
+`
+
+const Registrer = styled.div`
+    width: 100%;
+    height: 104px;
+    left: 25px;
+    top: 537px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background: #A328D6;
+    border-radius: 5px;
+    padding-left: 15px;
+    margin-top:15px;
+    margin-bottom:15px;
+   
 `
