@@ -16,5 +16,6 @@ const Logo = styled.div`
             font-weight: 400;
             font-size: 32px;
             line-height: 50px;
+            color: #ffffff;
        }
 `

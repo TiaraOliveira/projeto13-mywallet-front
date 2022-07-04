@@ -32,13 +32,15 @@ export default function CashEntry(){
     }
     return(
         <Container>
-            
-           <h4>Nova entrada</h4>
+            <Content>
+            <h4>Nova entrada</h4>
            <form >
             <input placeholder="valor" type="number"  onChange={e => setSoldin(e.target.value)}  value={soldin} required/>
             <input placeholder="descrição" type="text"  onChange={e => setDescription(e.target.value)}  value={description} required/>
             <button onClick={Register}>Salvar entrada</button>
         </form>
+            </Content>
+          
         
          </Container>
        
@@ -48,15 +50,13 @@ export default function CashEntry(){
 
 
 const Container = styled.div`
-	display: flex;
-    flex-direction: column;
-    align-items: center;
-	justify-content: center;
-	background: #8C11BE;
-	width:100%;
-    position: fixed;
-    top: 0px;
-	margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height:100vh;
+        background-color: #8C11BE;
     input{
         color: #F2F2F2
         font-family: 'Raleway';
@@ -108,3 +108,10 @@ const Container = styled.div`
 
     
 `;
+
+const Content = styled.div`
+    positio:fixed;
+    top: 10px;
+
+
+`

@@ -33,7 +33,7 @@ export default function Registros(){
         if(solds[i].type ==="increase"){
             total = total + solds[i].soldin
         } else{
-            total = total + solds[i].soldin
+            total = total - solds[i].soldin
         }
     }
 
@@ -55,7 +55,7 @@ function Backlogin(){
  
     return(
         <Container>
-            
+      
             <Header>
                 <h4>Olá, {dados.name}</h4>
                 <Icon onClick={Backlogin}>
@@ -64,7 +64,7 @@ function Backlogin(){
             </Header>
             
             <Content>
-                
+              
             <Extract>   
                         {solds.length === 0 ?
                        'Não há registros e entradas'
@@ -78,7 +78,7 @@ function Backlogin(){
                                 </span>
                                   
                                     <span>
-                                        <Eachvalue eachvalue= {extract.type}>{(extract.soldin)}</Eachvalue>
+                                        <Eachvalue eachvalue= {extract.type}>R$ {(extract.soldin).toFixed(2).replace('.', ',')}</Eachvalue>
                                        
                                     </span>
     
@@ -87,10 +87,11 @@ function Backlogin(){
                     })
                     }
                 </Extract>
-              <Saldo>
-                  <h4>Saldo</h4>
-                  <h4>{total}</h4>
-              </Saldo>
+             
+                    <Sold>
+                        <h4>Saldo</h4>
+                        <Total total= {total}>R$ {total.toFixed(2).replace('.', ',')}</Total>
+                    </Sold>
 
             </Content>
 			
@@ -117,15 +118,13 @@ function Backlogin(){
 
 
 const Container = styled.div`
-	display: flex;
-    flex-direction: column;
-    align-items: center;
-	justify-content: center;
-	background: #8C11BE;
-	width:100%;
-    position: fixed;
-    top: 0px;
-	margin-top: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+width: 100%;
+height:100vh;
+background-color: #8C11BE;
 
     
 `;
@@ -133,8 +132,8 @@ const Header = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width:100%;
-    margin: 24px;
+    width:80%;
+   
 	
     h4{
         margin-top:15px;
@@ -144,7 +143,7 @@ const Header = styled.div`
         font-weight: 700;
         font-size: 26px;
         line-height: 31px;
-        margin: 24px;
+       
     }
 
 
@@ -161,6 +160,8 @@ const Add = styled.div`
 	justify-content: center;
     position: fixed;
 	bottom: 0;
+    width: 100%;
+    heigth: 50px;
     z-index:1;
     background: #8C11BE;
 
@@ -196,8 +197,9 @@ const Icon = styled.div`
 `
 const Content = styled.div`
     position: relative;
-    overflow-y: scroll;
-    scrollbar-width: none;
+    position: relative;
+        overflow-y: scroll;
+        scrollbar-width: none;
     display: flex;
     align-items: center;
 	justify-content: center;
@@ -221,24 +223,29 @@ const Content = styled.div`
    
 `
 
-const Saldo = styled.div`
-        position: absolute;
-        position: fixed;
-        bottom: 200px;
+const Sold = styled.div`
+        position:fixed;
+        bottom: 130px;
+        z-index:1;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width:70%;
+        width:75%;
+        margin-left:15px;
+        padding-rigth:45px;
+        height: 50px;
+        background: #ffffff;
 `
 
 const Extract = styled.div`
     position: absolute;
     padding-top:35px;
-    margin-bottom: 100px;
+  
     margin-top: 10px;
     width: 98%;
     height: 80%;
 `
+
 const Atividade = styled.div`
 
     display: flex;
@@ -275,4 +282,8 @@ const Atividade = styled.div`
 
 
     }
+`
+const Total = styled.div`
+            color: ${(props) => props.total > 0 ? "#03AC00" : "#C70000"};
+            margin-rigth:45px;
 `

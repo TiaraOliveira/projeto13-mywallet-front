@@ -75,15 +75,13 @@ export default function TelaLogin(){
 
 
 const Container = styled.div`
-	display: flex;
-    flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	color: #126BA5;
-	width:100%;
-    position: fixed;
-    top: 100px;
-	
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height:100vh;
+        background-color: #8C11BE;
 	
     input{
         color: #F2F2F2
@@ -95,6 +93,10 @@ const Container = styled.div`
         width: 303px;
         height: 45px;
         margin-top: 10px;
+        &::placeholder{
+            font-size: 20px;
+            color: #000000;
+        }
        
     }
     
@@ -102,7 +104,7 @@ const Container = styled.div`
     button{
         width: 316px;
         height: 45px;
-        background: #52B6FF;
+        background: #A328D6;
         opacity: 0.7;
         border-radius: 4.63636px;
         margin-top: 10px;
@@ -121,7 +123,8 @@ const Container = styled.div`
     }
     h4{
         margin-top:15px;
+        color: #ffffff;
     }
-  
+    
 
 `;

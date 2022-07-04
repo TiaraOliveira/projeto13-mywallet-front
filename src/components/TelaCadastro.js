@@ -64,18 +64,17 @@ export default function TelaCadastro(){
 
 
 const Container = styled.div`
-	display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	color: #126BA5;
-	width:100%;
-    position: fixed;
-    top: 100px;
-	margin-top: 90px;
-	
+    width: 100%;
+    height:100vh;
+    background-color: #8C11BE;
+    color: #FFFFFF;
+  
     input{
-        color: #F2F2F2
+        color: #F2F2F2;
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
@@ -85,13 +84,17 @@ const Container = styled.div`
         height: 45px;
         margin-top: 10px;
         padding-left: 10px;
+        &::placeholder{
+            font-size: 20px;
+            color: #000000;
+        }
     }
     
 
     button{
         width: 316px;
         height: 45px;
-        background: #52B6FF;
+        background: #A328D6;
         opacity: 0.7;
         border-radius: 4.63636px;
         margin-top: 10px;
@@ -110,5 +113,9 @@ const Container = styled.div`
     }
     h4{
         margin-top:15px;
+        color: #FFFFFF;
+        
     }
+
+   
 `;
